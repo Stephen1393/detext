@@ -12,6 +12,10 @@ def extracted_text(doc):
         document_text += page_text #stores text of each page
                  
     return document_text
+
+result = extracted_text(doc)
+
+print(result)
   
 
     
