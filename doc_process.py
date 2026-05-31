@@ -1,8 +1,10 @@
 import pymupdf
 
-doc = pymupdf.open("test_files/fake_PDF.pdf")
 
-def extracted_text(doc):
+
+def extracted_text():
+    
+    doc = pymupdf.open("test_files/fake_PDF.pdf")
     
     
     document_text = ""
@@ -13,9 +15,7 @@ def extracted_text(doc):
                  
     return document_text
 
-result = extracted_text(doc)
 
-print(result)
   
 
     
