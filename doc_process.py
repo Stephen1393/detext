@@ -2,9 +2,9 @@ import pymupdf
 
 
 
-def extracted_text():
+def extracted_text(saved_path):
     
-    doc = pymupdf.open("test_files/fake_PDF.pdf")
+    doc = pymupdf.open(saved_path)
     
     
     document_text = ""
