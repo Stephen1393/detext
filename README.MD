@@ -4,30 +4,31 @@ Upload documents, search their contents, and ask questions about them.
 
 ## why I'm building it
 
-To learn by building an end-to-end document search and question-answering system.
+Detext is a document processing platform for file ingestion, text extraction, storage, and search. I'm building it to better understand and explore backend architecture and systems design.
 
 ## Planned Features
 
 - Document upload
 - Text extraction
 - Search
-- Question answering
-- Summaries
+- database storage
 
 ## Tech Stack
-- Python
+- Node.js
+- TypeScript
+- Express
 - PostgreSQL
-- FastAPI
-- pymupdf
+- Doocker
+- Mupdf
 
 ## Status
 
 ### the current architechture
 
-- api.py: recieve request via fastAPI and passes PDF to storage
+- api.ts: recieve request via express and passes PDF to storage
 
-- storage.py: reads bytes from the requested file from api and writes data to new file location
+- storage.ts: Ensure upload directory exists, move uploaded file to permanent location and return filepath
 
-- doc.process.py: recieves saved file from storage, extracts the text via pymupdf
+- doc.process.ts: recieves saved file from storage, extracts the text via mupdf
 
-- database.py (in progress): stores document content and metadata
+- database.ts (in progress): stores document content and metadata
