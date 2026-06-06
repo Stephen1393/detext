@@ -23,10 +23,14 @@ app.post("/documents", upload.single('document'), function (req, res) {
 
         return res.status(400).send("no file uploaded")
     }
-    const filePath = req.file //requested file from client (postman)
-    const savedPath = storage(filePath) //returned saved path from storage
-    const text = extract_text(savedPath) //extracted text from saved file
-    res.send(text) //return text to client
+    const uploadFile = req.file
+    
+    const savedPath = storage(uploadFile)
+
+    
+
+    const text = extract_text(savedPath) 
+    res.send(text) 
 
 
 })
