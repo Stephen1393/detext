@@ -1,8 +1,9 @@
 import express from 'express'
-//import multer from 'multer'
+import multer from 'multer'
+import { storage } from './storage.js'
 import { extract_text } from './doc_process.js';
 
-//const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: 'uploads/' });
 
 
 
@@ -17,9 +18,17 @@ app.get('/', function(req, res) {
     res.send("a homepage") 
 })
 
-app.post("/documents", function(req, res) {
-    const text = extract_text('test_files/fake_PDF.pdf')
-    res.send(text)
+app.post("/documents", upload.single('document'), function (req, res) {
+    if (!req.file) {
+
+        return res.status(400).send("no file uploaded")
+    }
+    const filePath = req.file //requested file from client (postman)
+    const savedPath = storage(filePath) //returned saved path from storage
+    const text = extract_text(savedPath) //extracted text from saved file
+    res.send(text) //return text to client
+
+
 })
 
 
