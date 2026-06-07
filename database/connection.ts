@@ -11,17 +11,13 @@ const config = {
     database:process.env.POSTGRES_DB
 }
 
+export const client = new Client(config)
+export function clientConnect() {
 
-const client = new Client(config) 
-
-console.log(config)
-
-try {
- await client.connect()
- console.log("connected")
-} catch (error) {
-    console.log(error)
+    return client.connect() 
 }
+
+
 
 
 
