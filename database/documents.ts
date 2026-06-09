@@ -1,26 +1,22 @@
-import { client, clientConnect } from "./connection";
+import { client, clientConnect } from "./connection.js";
 
-async function insertDocument() {
+export async function insertDocument(filename:string, filepath:string, extractedText:string) {
 
     await clientConnect()
-
-client.query(`
-    INSERT INTO documents (
-    filename,
-    filepath,
-    text
     
+    await client.query(`
+
+        INSERT INTO documents (
+        filename,
+        filepath,
+        text
+        
+        )
+        
+        Values ($1, $2, $3 )`,
+        [filename, filepath,extractedText]
     )
-
-Values(
-    'fake_PDF.pdf',
-    'uploads/fake_PDF.pdf',
-    'this is extracted text'
-    )
-`)
-
-await client.end()
-
+    
+    
+    await client.end()
 }
-
-insertDocument()
