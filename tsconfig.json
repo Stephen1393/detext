@@ -1,4 +1,4 @@
-{
+{ 
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
@@ -7,7 +7,7 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
+    "module": "commonjs",
     "target": "esnext",
     "types": ["node"],
     // For nodejs:
@@ -17,7 +17,7 @@
 
     // Other Outputs
     "sourceMap": true,
-    "declaration": true,
+    "declaration": false,
     "declarationMap": true,
 
     // Stricter Typechecking Options

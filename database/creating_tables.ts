@@ -1,15 +1,18 @@
-import { Client } from 'pg'
-import { client } from "./connection.js"
-import { clientConnect } from './connection.js'
+import { client, clientConnect } from "./connection"
 
-await clientConnect()
+async function createTable() {
 
-
-await client.query(`
-    CREATE TABLE IF NOT EXIST documents (
-    id SERIAL PRIMARY KEY,
-    filename TEXT NOT NULL,
-    filepath TEXT NOT NULL,
-    text TEXT NOT NULL
-    );
+    await clientConnect()
+    
+    await client.query(`
+        CREATE TABLE IF NOT EXISTS documents (
+        id SERIAL PRIMARY KEY,
+        filename TEXT NOT NULL,
+        filepath TEXT NOT NULL,
+        text TEXT NOT NULL
+        );
     `)
+
+}
+
+createTable()

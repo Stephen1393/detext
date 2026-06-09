@@ -1,9 +1,9 @@
 import * as fs from "node:fs"
 import * as mupdf from "mupdf"
 
-export function extract_text (fileUpload: string) {
+export function extract_text (filepath: string) {
 
-let document = mupdf.PDFDocument.openDocument(fs.readFileSync(fileUpload))
+let document = mupdf.PDFDocument.openDocument(fs.readFileSync(filepath))
 
 let text = ""
 
