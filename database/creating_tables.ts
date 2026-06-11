@@ -1,4 +1,4 @@
-import { client, clientConnect } from "./connection"
+import { client, clientConnect } from "./connection.js"
 
 async function createTable() {
 

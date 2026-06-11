@@ -17,8 +17,17 @@ export async function insertDocument(filename:string, filepath:string, extracted
         [filename, filepath,extractedText]
     )
     
-    
-    await client.end()
+
+}
+
+
+export async function getDocuments() {
+
+    await clientConnect()
+
+    const queryResult = client.query(`SELECT * FROM documents`)
+
+    return (await queryResult).rows
 }
 
 export async function getDocument(id : number) {
@@ -29,8 +38,6 @@ export async function getDocument(id : number) {
         SELECT * FROM documents
         WHERE id = $1
     `, [id])
-
-    await client.end()
     
     
 return result.rows

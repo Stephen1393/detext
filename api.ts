@@ -3,6 +3,7 @@ import multer from 'multer'
 import { storage } from './storage.js'
 import { extract_text } from './doc_process.js';
 import { insertDocument } from './database/documents.js';
+import { getDocuments, getDocument } from './database/documents.js'
 
 const upload = multer({ dest: 'uploads/' });
 
@@ -17,7 +18,8 @@ app.listen(3000, function() {
 app.get('/', function(req, res) {
     
     res.send("a homepage") 
-})
+}) //end get
+
 
 app.post("/documents", upload.single('document'), async function (req, res) {
     if (!req.file) {
@@ -33,23 +35,18 @@ app.post("/documents", upload.single('document'), async function (req, res) {
     const database = await insertDocument(fileName,savedPath,text)
     
     res.status(200).send(database)
+
+}) //end post
+
      
+app.get("/documents", async function(req, res) {
+    
+    const result = await getDocuments()
 
+    console.log("GET documents route hit")
+    
+    res.status(200).json({document: result})
+    
+}) //end get
 
-})
-
-
-
-
-
-
-
-
-//user uploads file, app receives it. passes it to strorage
-//storage saves PDF to new location
-//storage returns file path
-//doc_process receives file path
-//doc_process extracts text
-//api.ts passes file path + extracted text to database
-//database saves text and stores file
 
