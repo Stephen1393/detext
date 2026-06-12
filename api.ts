@@ -3,7 +3,7 @@ import multer from 'multer'
 import { storage } from './storage.js'
 import { extract_text } from './doc_process.js';
 import { createDocument } from './database/documents.js';
-import { getDocuments, getDocument } from './database/documents.js'
+import { getDocuments, getDocument, deleteDocument } from './database/documents.js'
 
 const upload = multer({ dest: 'uploads/' });
 
@@ -67,5 +67,23 @@ app.get("/document/:id", async function (req, res) {
     }
 
     res.status(200).json({document: result})
+}) //end get
+
+app.delete('/document/:id', async function (req, res) {
+
+    const id = Number(req.params.id)
+
+    if (Number.isNaN(id)) {
+
+         return res.status(400).send("no id found")
+    }
+
+    const result = await deleteDocument(id)
+
+    if (result === 0) {
+        return res.status(404).send('id doesnt exist. nothing deleted')
+    }
+
+    res.status(200).json({result})
 })
 

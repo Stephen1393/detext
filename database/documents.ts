@@ -1,6 +1,6 @@
 import { client, clientConnect } from "./connection.js";
 
-export async function insertDocument(filename:string, filepath:string, extractedText:string) {
+export async function createDocument(filename:string, filepath:string, extractedText:string) {
 
     await clientConnect()
     
@@ -41,5 +41,18 @@ export async function getDocument(id : number) {
     
     
 return result.rows
+
+}
+
+export async function deleteDocument(id: number) {
+    
+    await clientConnect()
+
+    const result = await client.query(
+        `DELETE FROM documents
+        WHERE id = $1`,
+    [id])
+
+    return result.rowCount
 
 }
