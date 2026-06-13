@@ -3,17 +3,11 @@ import multer from 'multer'
 import { storage } from './storage.js'
 import { extract_text } from './doc_process.js';
 import { createDocument } from './database/documents.js';
-import { getDocuments, getDocument, deleteDocument } from './database/documents.js'
+import { getDocuments, getDocument, deleteDocument} from './database/documents.js'
 
 const upload = multer({ dest: 'uploads/' });
 
-
-
-const app = express()
-
-app.listen(3000, function() {
-    console.log("listening on port 3000...")
-})
+export const app = express()
 
 app.get('/', function(req, res) {
     
